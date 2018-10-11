@@ -21,7 +21,7 @@ class AmazonProductAPI(object):
             'Version': '2013-08-01'
         }
 
-    def item_search(self, search_index, keywords=None, parameters=None, response_groups=None):
+    def item_search(self, search_index, keywords=None, parameters=None, response_groups=None, page=None):
         if parameters is None:
             parameters = {}
         if response_groups is None:
@@ -36,6 +36,8 @@ class AmazonProductAPI(object):
             params['Keywords'] = ','.join(keywords)
         if response_groups:
             params['ResponseGroup'] = ','.join(response_groups)
+        if page:
+            params['ItemPage'] = page
         parameters.update(params)
         req_url = self.request_builder.build_request_url(parameters)
         response = self._make_get_request(req_url)
