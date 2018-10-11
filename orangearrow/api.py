@@ -1,7 +1,7 @@
 import requests
 
 from .builder import AmazonRequestBuilder
-from .response import AmazonItemSearchResponse
+from .response import AmazonItemSearchResponse, AmazonItemLookupResponse
 
 
 class AmazonProductAPI(object):
@@ -40,10 +40,28 @@ class AmazonProductAPI(object):
             params['ItemPage'] = page
         parameters.update(params)
         req_url = self.request_builder.build_request_url(parameters)
-        response = self._make_get_request(req_url)
+        response = self._make_get_request(req_url, AmazonItemSearchResponse)
         return response
 
-    def _make_get_request(self, req_url):
+    def item_lookup(self, item_id, id_type='ASIN', search_index=None, response_groups=None, parameters=None):
+        if parameters is None:
+            parameters = {}
+        if response_groups is None:
+            response_groups = []
+        params = self._base_default_params
+        params['Operation'] = 'ItemLookup'
+        params['ItemId'] = item_id
+        params['IdType'] = id_type
+        if response_groups:
+            params['ResponseGroup'] = ','.join(response_groups)
+        if search_index:
+            params['SearchIndex'] = search_index
+        parameters.update(params)
+        req_url = self.request_builder.build_request_url(parameters)
+        response = self._make_get_request(req_url, AmazonItemLookupResponse)
+        return response
+
+    def _make_get_request(self, req_url, response_class):
         req = requests.get(req_url)
-        response = AmazonItemSearchResponse(req)
+        response = response_class(req)
         return response
