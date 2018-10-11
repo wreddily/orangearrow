@@ -1,7 +1,7 @@
 import requests
 
 from .builder import AmazonRequestBuilder
-from .response import AmazonProductAPIResponse
+from .response import AmazonItemSearchResponse
 
 
 class AmazonProductAPI(object):
@@ -43,5 +43,5 @@ class AmazonProductAPI(object):
 
     def _make_get_request(self, req_url):
         req = requests.get(req_url)
-        response = AmazonProductAPIResponse(req)
+        response = AmazonItemSearchResponse(req)
         return response
