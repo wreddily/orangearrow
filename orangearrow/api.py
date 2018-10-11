@@ -18,6 +18,7 @@ class AmazonProductAPI(object):
             'AWSAccessKeyId': self.access_key,
             'AssociateTag': self.associate_tag,
             'ResponseGroup': 'Images,ItemAttributes',
+            'Version': '2013-08-01'
         }
 
     def item_search(self, search_index, keywords=None, parameters=None, response_groups=None):
