@@ -19,11 +19,11 @@ class AmazonRequestBuilder(object):
     def current_timestamp(self):
         return datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.000Z')
 
-    def build_request_url(self, params):
+    def build_request_url(self, params, override_timestamp=None, override_protocol=None):
         # Reference - https://docs.aws.amazon.com/AWSECommerceService/latest/DG/rest-signature.html
-        params['Timestamp'] = self.current_timestamp
+        params['Timestamp'] = override_timestamp or self.current_timestamp
         request_querystring = self._build_querystring(params)
-        req_url = '{}://{}{}?{}'.format(self.request_protocol, self.api_host, self.api_uri, request_querystring)
+        req_url = '{}://{}{}?{}'.format(override_protocol or self.request_protocol, self.api_host, self.api_uri, request_querystring)
         return req_url
 
     def _build_querystring(self, params):
