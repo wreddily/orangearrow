@@ -1,7 +1,11 @@
 import requests
 
 from .builder import AmazonRequestBuilder
-from .response import AmazonItemSearchResponse, AmazonItemLookupResponse
+from .response import (
+    AmazonItemSearchResponse,
+    AmazonItemLookupResponse,
+    AmazonSimilarityLookupResponse,
+)
 
 
 class AmazonProductAPI(object):
@@ -59,6 +63,23 @@ class AmazonProductAPI(object):
         parameters.update(params)
         req_url = self.request_builder.build_request_url(parameters)
         response = self._make_get_request(req_url, AmazonItemLookupResponse)
+        return response
+
+    def similarity_lookup(self, asins, response_groups=None, parameters=None):
+        if parameters is None:
+            parameters = {}
+        if response_groups is None:
+            response_groups = []
+        if not isinstance(asins, (list,)):
+            asins = [asins]
+        params = self._base_default_params
+        params['Operation'] = 'SimilarityLookup'
+        params['ItemId'] = ','.join(asins)
+        if response_groups:
+            params['ResponseGroup'] = ','.join(response_groups)
+        parameters.update(params)
+        req_url = self.request_builder.build_request_url(parameters)
+        response = self._make_get_request(req_url, AmazonSimilarityLookupResponse)
         return response
 
     def _make_get_request(self, req_url, response_class):

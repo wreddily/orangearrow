@@ -44,3 +44,8 @@ class AmazonItemSearchResponse(AmazonProductAPIResponse):
 class AmazonItemLookupResponse(AmazonProductAPIResponse):
     response_obj_name = 'ItemLookupResponse'
     response_error_name = 'ItemLookupErrorResponse'
+
+
+class AmazonSimilarityLookupResponse(AmazonProductAPIResponse):
+    response_obj_name = 'SimilarityLookupResponse'
+    response_error_name = 'SimilarityLookupErrorResponse'
