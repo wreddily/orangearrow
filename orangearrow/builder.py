@@ -39,7 +39,7 @@ class AmazonRequestBuilder(object):
         return qs
 
     def _encode_querystring(self, params):
-        request_querystring = urllib.parse.urlencode(params)
+        request_querystring = urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
         return request_querystring
 
     def _add_request_signature(self, querystring):
