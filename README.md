@@ -16,7 +16,11 @@ To use Search or Lookup functionality, first create an instance of the `AmazonPr
 
     from orangearrow import AmazonProductAPI
 
-    amazon_api = AmazonProductAPI(access_key='AKIAIOSFODNN7EXAMPLE', secret_key='1234567890', associate_tag='mytag-20')
+    amazon_api = AmazonProductAPI(
+        access_key='AKIAIOSFODNN7EXAMPLE',
+        secret_key='1234567890',
+        associate_tag='mytag-20'
+    )
 
 ##### Search
 
@@ -27,7 +31,7 @@ To search for items, use the `item_search` method with a valid [Search Index](ht
         ['Television', 'Flatscreen',]
     )
 
-You can also optionally pass a `Page` parameter to paginate results:
+You can also optionally pass a `page` parameter to paginate results:
 
     search_response = amazon_api.item_search(
         'Electronics',
