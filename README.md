@@ -10,6 +10,12 @@
 
 You will need an Amazon Associate Tag and Amazon API credentials. All of that is covered [here](https://docs.aws.amazon.com/AWSECommerceService/latest/DG/becomingDev.html).
 
+#### How do I install it?
+
+You can install `orangearrow` with pip:
+
+    pip install orangearrow
+
 #### How do I use it?
 
 To use Search or Lookup functionality, first create an instance of the `AmazonProductAPI` class. You will need to pass your Amazon API credentials like so:
