@@ -16,7 +16,7 @@ setup(
     python_requires='>=3.4',
     install_requires=[
         "requests>=2.20.0",
-        "xmltodict==0.10.2",
+        "xmltodict>=0.10.2",
     ],
     classifiers=[
         'License :: OSI Approved :: Apache Software License',
