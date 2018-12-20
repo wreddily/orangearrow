@@ -8,14 +8,14 @@ setup(
     description="A Python Library for interacting with the Amazon Product Advertising API.",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version="v0.9.62",
+    version="v0.9.63",
     author='Joe Wilson',
     license='Apache2',
     url="https://github.com/wreddily/orangearrow",
     packages=['orangearrow'],
     python_requires='>=3.4',
     install_requires=[
-        "requests==2.20.0",
+        "requests>=2.20.0",
         "xmltodict==0.10.2",
     ],
     classifiers=[
